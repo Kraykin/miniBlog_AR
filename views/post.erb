@@ -21,9 +21,9 @@
 <br />
 <p>
 	<form action="/post/<%= @post.id %>" method="POST" role="form">
-		<input name="comment[username]" type="text" class="form-control" style="width: 600px" placeholder="Enter username" value="">
+		<input name="comment[username]" type="text" class="form-control" style="width: 600px" placeholder="Enter username" value="<%= @new_comment.username %>">
 		<br />
-		<textarea name="comment[comment]" class="form-control" rows="6" style="width: 600px" placeholder="Type comment text here"></textarea>
+		<textarea name="comment[comment]" class="form-control" rows="6" style="width: 600px" placeholder="Type comment text here"><%= @new_comment.comment %></textarea>
 		<br />
 		<button type="submit" class="btn btn-primary">Add comment</button>
 	</form>

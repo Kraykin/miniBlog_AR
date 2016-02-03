@@ -14,6 +14,8 @@ end
 
 class Comment < ActiveRecord::Base
 	belongs_to :post
+	validates :username, presence: true
+	validates :comment, presence: true
 end
 
 get '/' do
@@ -39,12 +41,17 @@ end
 get '/post/:post_id' do
 	@post = Post.find params[:post_id]
 	@comments = Post.find(params[:post_id]).comments.order 'created_at'
+	@new_comment = Comment.new
 	erb :post
 end
 
 post '/post/:post_id' do
 	params[:comment].store :post_id, params[:post_id]
 	@new_comment = Comment.new params[:comment]
-	@new_comment.save
-	redirect to '/post/' + params[:post_id]
+	if @new_comment.save
+		redirect to '/post/' + params[:post_id]
+	else
+		@error = @new_comment.errors.full_messages.first
+		redirect to '/post/' + params[:post_id]
+	end
 end
