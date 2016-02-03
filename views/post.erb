@@ -5,3 +5,15 @@
 	<br /><br />
 	<span style="font-size: 75%; color: #999"><%= @post.username %> wrote <%= @post.created_at %></span>
 </p>
+<br />
+
+<br />
+<p>
+	<form action="/post/<%= @post.id %>" method="POST" role="form">
+		<input name="comment[username]" type="text" class="form-control" style="width: 600px" placeholder="Enter username" value="">
+		<br />
+		<textarea name="comment[comment]" class="form-control" rows="6" style="width: 600px" placeholder="Type comment text here"></textarea>
+		<br />
+		<button type="submit" class="btn btn-primary">Add comment</button>
+	</form>
+</p>

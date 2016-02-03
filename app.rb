@@ -32,3 +32,10 @@ get '/post/:post_id' do
 
 	erb :post
 end
+
+post '/post/:post_id' do
+	@new_comment = Comment.new params[:comment]
+	@new_comment.save
+	
+	redirect to '/post/' + params[:post_id]
+end
