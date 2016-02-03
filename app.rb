@@ -8,6 +8,8 @@ set :database, "sqlite3:minblog.db"
 
 class Post < ActiveRecord::Base
 	has_many :comments
+	validates :username, presence: true
+	validates :post, presence: true
 end
 
 class Comment < ActiveRecord::Base
@@ -20,13 +22,18 @@ get '/' do
 end
 
 get '/new' do
+	@new_post = Post.new
 	erb :new
 end
 
 post '/new' do
 	@new_post = Post.new params[:post]
-	@new_post.save
-	redirect to '/'
+	if @new_post.save
+		redirect to '/'
+	else
+		@error = @new_post.errors.full_messages.first
+		erb :new
+	end
 end
 
 get '/post/:post_id' do
