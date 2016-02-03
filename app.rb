@@ -34,6 +34,7 @@ get '/post/:post_id' do
 end
 
 post '/post/:post_id' do
+	params[:comment].store :post_id, params[:post_id]
 	@new_comment = Comment.new params[:comment]
 	@new_comment.save
 	
