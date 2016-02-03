@@ -5,7 +5,18 @@
 	<br /><br />
 	<span style="font-size: 75%; color: #999"><%= @post.username %> wrote <%= @post.created_at %></span>
 </p>
+
 <br />
+<hr />
+<h4>Comments:</h4>
+<br />
+<% @comments.each do |comments| %>
+	<p>
+		<%= comments.comment %>
+		<br />
+		<span style="font-size: 75%; color: #999"><%= comments.username %> wrote <%= comments.created_at %></span>
+	</p>
+<% end %>
 
 <br />
 <p>

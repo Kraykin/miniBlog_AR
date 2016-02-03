@@ -31,7 +31,7 @@ end
 
 get '/post/:post_id' do
 	@post = Post.find params[:post_id]
-
+	@comments = Post.find(params[:post_id]).comments.order 'created_at'
 	erb :post
 end
 
@@ -39,6 +39,5 @@ post '/post/:post_id' do
 	params[:comment].store :post_id, params[:post_id]
 	@new_comment = Comment.new params[:comment]
 	@new_comment.save
-	
 	redirect to '/post/' + params[:post_id]
 end
