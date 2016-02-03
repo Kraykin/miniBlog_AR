@@ -1,0 +1,11 @@
+<h2>Latest posts:</h2>
+<br />
+<% @posts.each do |posts| %>
+	<p>
+		<%= posts.post %>
+		<br /><br />
+		<span style="font-size: 75%; color: #999"><%= posts.username %> wrote <%= posts.created_at %></span>
+		<a href="/post/<%= posts.id %>">Comments</a>
+	</p>
+	<hr />
+<% end %>
