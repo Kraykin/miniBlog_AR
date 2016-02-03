@@ -26,3 +26,9 @@ post '/new' do
 	@new_post.save
 	redirect to '/'
 end
+
+get '/post/:post_id' do
+	@post = Post.find params[:post_id]
+
+	erb :post
+end
